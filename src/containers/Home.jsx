@@ -43,8 +43,12 @@ const Home = props => {
               style={{ width: "100%" }}
               hasMore={skip + limit < totalItemCount ? true : false}
               loader={
-                <div className="MatchesList" style={{ paddingBottom: 10 }}>
-                  <SkeltonCard key="loading" />
+                <div
+                  className="MatchesList"
+                  style={{ paddingBottom: 10 }}
+                  key={new Date()}
+                >
+                  <SkeltonCard />
                 </div>
               }
             >

@@ -11,13 +11,13 @@ function MatchCard(props) {
   const { item, key, style, history } = props;
   const {
     name,
-    host_name = "Francesca",
-    neighbourhood_group = "North Region",
-    neighbourhood = "Woodlands",
-    latitude = 1.44255,
-    longitude = 103.7958,
-    room_type = "Private room",
-    price = 83
+    host_name = "",
+    neighbourhood_group = "",
+    neighbourhood = "",
+    latitude = 0,
+    longitude = 0,
+    room_type = "",
+    price = 0
   } = item;
   const onClick = () => {
     history.push("/item-detail", { item });
@@ -27,8 +27,7 @@ function MatchCard(props) {
     !host_name &&
     !neighbourhood_group &&
     !neighbourhood &&
-    !room_type &&
-    !price
+    !room_type
   ) {
     return (
       <div

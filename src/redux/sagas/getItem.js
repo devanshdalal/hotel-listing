@@ -5,11 +5,11 @@ import APICaller from "utils/APICaller";
 export function* getItems() {
   const filters = yield select(state => state.itemsReducer.filters);
   let { search = "", sort = "", order = "", limit = 20, skip = 0 } = filters;
-  let url = `posts?limit=${limit}`;
+  let url = `list?limit=${limit}`;
   if (search.length || sort.length || order.length || skip) {
     search = search.trim().toLowerCase();
-    sort = order === "desc" ? `-${sort}` : sort;
-    url = `${url}&filter=${search}&sort=${sort}&skip=${skip}`;
+    sort = sort && order ? `${sort},${order}` : "";
+    url = `${url}&name=${search}&sort=${sort}&start=${skip}`;
   }
   try {
     const response = yield call(APICaller, { method: "GET", reqUrl: url });

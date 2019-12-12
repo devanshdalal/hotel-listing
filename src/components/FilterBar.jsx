@@ -17,7 +17,7 @@ const { theme } = colors;
 function FilterBar(props) {
   const { filters, dispatch } = props;
   const onSortChange = order => {
-    dispatch(itemsFilterChange({ sort: "season", order, skip: 0 }));
+    dispatch(itemsFilterChange({ sort: "price", order, skip: 0 }));
     dispatch(clearItems());
     dispatch(getItems());
   };
@@ -29,7 +29,7 @@ function FilterBar(props) {
         backgroundColor: theme
       }}
     >
-      <h5 className="title">MATCHES</h5>
+      <h5 className="title">HOTELS</h5>
       {/* <Button color="success" className="predict-btn" onClick={onClickPredict}>
         Predict Result
       </Button> */}
@@ -45,13 +45,13 @@ function FilterBar(props) {
             active={filters.order === "asc" ? true : false}
             onClick={onSortChange.bind(this, "asc")}
           >
-            Sort by season asc
+            Sort by price asc
           </DropdownItem>
           <DropdownItem
             active={filters.order === "desc" ? true : false}
             onClick={onSortChange.bind(this, "desc")}
           >
-            Sort by season desc
+            Sort by price desc
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
