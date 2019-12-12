@@ -3,7 +3,6 @@ import isEmpty from "lodash/isEmpty";
 import orderBy from "lodash/orderBy";
 
 export const APIhandler = options => {
-  console.log("aaaaaaaaaaaaaaaaaaaaaaaa", options);
 
   let params = {};
   // get url params
@@ -17,30 +16,32 @@ export const APIhandler = options => {
     });
   }
 
-  // filter: "dsds"
+  // name: "dsds"
   // limit: "20"
   // skip: "0"
   // sort: "-season"
   return new Promise(async (resolve, reject) => {
     console.log("params", params);
-
     if (api_response.length) {
       if (
         !isEmpty(params) &&
-        (!isEmpty(params.filter) || !isEmpty(params.sort))
+        (!isEmpty(params.name) || !isEmpty(params.sort))
       ) {
         let response = api_response.filter(
-          item => item.name.toLowerCase() === params.filter.toLowerCase()
+          item => item.name.toLowerCase() === params.name.toLowerCase()
         );
         if (params.sort.length) {
-          const order = params.sort[0] === "-" ? "desc" : "asc";
-          const sortByKey =
-            params.sort[0] === "-" ? params.sort.substr(1) : params.sort;
-          response = orderBy(response, sortByKey, order);
+          const [sort, order] = params.sort.split(",");
+
+          response = orderBy(response, sort, order);
         }
-        return resolve({ data: [response, response.length] });
+        return resolve({
+          data: { totalElements: response.length, content: response }
+        });
       } else {
-        return resolve({ data: [api_response, api_response.length] });
+        return resolve({
+          data: { totalElements: api_response.length, content: api_response }
+        });
       }
     } else {
       return reject({});
