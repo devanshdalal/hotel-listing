@@ -27,12 +27,12 @@ export const APIhandler = options => {
         !isEmpty(params) &&
         (!isEmpty(params.name) || !isEmpty(params.sort))
       ) {
-        let response = api_response.filter(
-          item => item.name.toLowerCase() === params.name.toLowerCase()
+        let response = api_response.filter(item =>
+          item.name.toLowerCase().includes(params.name.toLowerCase())
         );
         if (params.sort.length) {
           const [sort, order] = params.sort.split(",");
-
+          
           response = orderBy(response, sort, order);
         }
         return resolve({
