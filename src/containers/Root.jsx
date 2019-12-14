@@ -8,9 +8,9 @@ export default props => {
   return (
     <Layout>
       <Switch>
-        <Route path="/home" exact component={Home} />
+        <Route path="/" exact component={Home} />
 
-        <Redirect to="/home" />
+        <Redirect to="/" />
       </Switch>
     </Layout>
   );

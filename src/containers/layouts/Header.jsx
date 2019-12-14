@@ -1,15 +1,15 @@
 import React, { useRef, useCallback } from "react";
-import { FaSearch, FaUserCircle } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import debounce from "lodash/debounce";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import {
-  UncontrolledDropdown,
-  DropdownToggle,
-  // DropdownMenu,
-  // DropdownItem
-} from "reactstrap";
+// import {
+//   UncontrolledDropdown,
+//   DropdownToggle,
+//   DropdownMenu,
+//   DropdownItem
+// } from "reactstrap";
 
 import getImage from "utils/images";
 import { getItems, itemsFilterChange, clearItems } from "redux/actions/getItem";
@@ -23,8 +23,7 @@ const Header = props => {
   const {
     dispatch,
     filters,
-    location: { pathname },
-
+    location: { pathname }
   } = props;
 
   const { search = "" } = filters;
@@ -50,9 +49,8 @@ const Header = props => {
     loadData("");
   };
 
-
   const moveToHome = () => {
-    props.history.push("/home");
+    props.history.push("/");
   };
 
   return (
@@ -69,7 +67,7 @@ const Header = props => {
         onClick={moveToHome}
       />
       <div className="search-wrapper center">
-        {pathname === "/home" ? (
+        {pathname === "/" ? (
           <div
             className="search center"
             onClick={() => {

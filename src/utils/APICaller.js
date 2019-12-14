@@ -15,7 +15,7 @@ const APICaller = ({
 }) => {
   return new Promise(async (resolve, reject) => {
     let url = `${apiBaseUrl}/${reqUrl}`;
-    console.log(url, "data", data, "method", method, "header", headers);
+    // console.log(url, "data", data, "method", method, "header", headers);
     let options = {
       method,
       url,

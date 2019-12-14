@@ -20,7 +20,7 @@ export const APIhandler = options => {
   // skip: "0"
   // sort: "-season"
   return new Promise(async (resolve, reject) => {
-    console.log("params", params);
+    // console.log("params", params);
     if (api_response.length) {
       if (!isEmpty(params)) {
         let response = api_response;
