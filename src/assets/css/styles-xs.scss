@@ -8,12 +8,6 @@
   .Home {
     padding: 0;
   }
-  .team-name {
-    width: 250px;
-  }
-  .venue {
-    width: 250px;
-  }
 }
 
 // small mobile
@@ -29,11 +23,8 @@
   }
   .Home {
     padding: 0;
-    .team-name {
-      width: 150px;
-    }
-    .venue {
-      width: 150px;
+    &_filterBar_form {
+      min-width: unset;
     }
   }
   .ItemDetail_body {

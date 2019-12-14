@@ -15,9 +15,9 @@ const Home = props => {
     history,
     itemsApiInProgress,
     filters,
-    totalItemCount
+    responseItemCount
   } = props;
-  let { skip, limit } = filters;
+  let { limit } = filters;
   useEffect(() => {
     dispatch(getItems());
     // eslint-disable-next-line
@@ -29,7 +29,7 @@ const Home = props => {
   if (itemsApiInProgress && items.length === 0) {
     items = [{}, {}, {}, {}, {}, {}];
   }
-  console.log("items@@@@", items);
+  // console.log("items@@@@", responseItemCount, items);
 
   return (
     <div className="Home">
@@ -41,7 +41,7 @@ const Home = props => {
               pageStart={0}
               loadMore={loadMore}
               style={{ width: "100%" }}
-              hasMore={skip + limit < totalItemCount ? true : false}
+              hasMore={responseItemCount === limit ? true : false}
               loader={
                 <div
                   className="MatchesList"
@@ -70,7 +70,7 @@ const mapStateToProps = state => {
     loading: state.loadingReducer.loadState,
     items: state.itemsReducer.items,
     itemsApiInProgress: state.itemsReducer.itemsApiInProgress,
-    totalItemCount: state.itemsReducer.totalItemCount,
+    responseItemCount: state.itemsReducer.responseItemCount,
     filters: state.itemsReducer.filters
   };
 };

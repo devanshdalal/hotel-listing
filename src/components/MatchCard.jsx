@@ -1,4 +1,5 @@
 import React from "react";
+import { Badge } from "reactstrap";
 import { withRouter } from "react-router-dom";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
@@ -14,8 +15,6 @@ function MatchCard(props) {
     host_name = "",
     neighbourhood_group = "",
     neighbourhood = "",
-    latitude = 0,
-    longitude = 0,
     room_type = "",
     price = 0
   } = item;
@@ -51,7 +50,6 @@ function MatchCard(props) {
   }
   return (
     <div key={key} style={style}>
-      <h6 className="marginPadding">{name}</h6>
       <div
         className="MatchCard"
         onClick={onClick}
@@ -59,27 +57,19 @@ function MatchCard(props) {
           borderTopColor: theme
         }}
       >
-        <div className="left-image-view MatchCard_imageView">
-          {/* <img
-            src={getImages(allTeams[team1].icon)}
-            className="teamImage"
-            alt=""
-          /> */}
-        </div>
-
         <div className="MatchCard_detail">
-          <div className="team-name">{host_name}</div>
-          <h6 className="marginPadding">{neighbourhood}</h6>
-          <div className="team-name">{neighbourhood_group}</div>
-          <div className="venue">{room_type}</div>
-          <div className="venue">{price}</div>
+          <h5>
+            <Badge pill color="info">
+              {room_type}
+            </Badge>
+          </h5>
+          <h4 className="marginPadding truncate-text">{name}</h4>
+          <div className="truncate-text">{host_name}</div>
+          <h6 className="marginPadding venue truncate-text">{`${neighbourhood}, ${neighbourhood_group}`}</h6>
         </div>
-        <div className="right-image-view MatchCard_imageView">
-          {/* <img
-            src={getImages(allTeams[team2].icon)}
-            className="teamImage"
-            alt=""
-          /> */}
+        <div className="MatchCard_price">
+          <div>Price</div>
+          <h2 className="value">{price}</h2>
         </div>
       </div>
     </div>

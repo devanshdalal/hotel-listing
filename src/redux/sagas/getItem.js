@@ -4,12 +4,28 @@ import APICaller from "utils/APICaller";
 
 export function* getItems() {
   const filters = yield select(state => state.itemsReducer.filters);
-  let { search = "", sort = "", order = "", limit = 20, skip = 0 } = filters;
+  let {
+    search = "",
+    sort = "",
+    order = "",
+    region = "",
+    limit = 20,
+    skip = 0
+  } = filters;
   let url = `list?limit=${limit}`;
-  if (search.length || sort.length || order.length || skip) {
+  if (skip) {
+    url = `${url}&start=${skip}`;
+  }
+  if (search.length) {
     search = search.trim().toLowerCase();
+    url = `${url}&name=${search}`;
+  }
+  if (sort.length || order.length) {
     sort = sort && order ? `${sort},${order}` : "";
-    url = `${url}&name=${search}&sort=${sort}&start=${skip}`;
+    url = `${url}&sort=${sort}`;
+  }
+  if (region) {
+    url = `${url}&region=${region}`;
   }
   try {
     const response = yield call(APICaller, { method: "GET", reqUrl: url });

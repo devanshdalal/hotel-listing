@@ -4,11 +4,14 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  FormGroup,
+  CustomInput
 } from "reactstrap";
 import { connect } from "react-redux";
 
 import { getItems, itemsFilterChange, clearItems } from "redux/actions/getItem";
+import { regions } from "utils/common";
 // @ts-ignore
 import colors from "assets/css/colors.scss";
 
@@ -22,6 +25,11 @@ function FilterBar(props) {
     dispatch(getItems());
   };
 
+  const onRegionChange = event => {
+    dispatch(itemsFilterChange({ region: event.target.value, skip: 0 }));
+    dispatch(clearItems());
+    dispatch(getItems());
+  };
   return (
     <div
       className="Home_filterBar center"
@@ -33,6 +41,21 @@ function FilterBar(props) {
       {/* <Button color="success" className="predict-btn" onClick={onClickPredict}>
         Predict Result
       </Button> */}
+      <FormGroup className="Home_filterBar_form">
+        <CustomInput
+          className="input"
+          type="select"
+          name="venu"
+          id="venu"
+          onChange={onRegionChange}
+          // value={venu}
+        >
+          <option value="">Filter by region</option>
+          {regions.map((regionName, key) => (
+            <option key={key}>{regionName}</option>
+          ))}
+        </CustomInput>
+      </FormGroup>
       <UncontrolledDropdown>
         <DropdownToggle tag="a" className="nav-link">
           <div className="sort btn center">

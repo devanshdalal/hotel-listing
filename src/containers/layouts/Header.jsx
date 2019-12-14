@@ -92,18 +92,18 @@ const Header = props => {
           void 0
         )}
       </div>
-      <div style={{ minWidth: 85 }}>
+      {/* <div style={{ minWidth: 85 }}>
         <UncontrolledDropdown>
           <DropdownToggle tag="a" className="nav-link dropdown-link" caret>
             <FaUserCircle className="Header_icon" size={36} />
           </DropdownToggle>
-          {/* <DropdownMenu right>
+          <DropdownMenu right>
             <DropdownItem onClick={moveToProfile}>Profile</DropdownItem>
             <DropdownItem divider />
             <DropdownItem onClick={logoutFunction}>Log out</DropdownItem>
-          </DropdownMenu> */}
+          </DropdownMenu>
         </UncontrolledDropdown>
-      </div>
+      </div> */}
     </div>
   );
 };

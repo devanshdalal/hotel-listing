@@ -1,14 +1,17 @@
 import ActionTypes from "../constants/ActionTypes";
+import get from "lodash/get";
 
+const initialItemExpected = 20;
 const initialState = {
   items: [],
   itemsApiInProgress: false,
-  totalItemCount: 1,
+  responseItemCount: initialItemExpected,
   filters: {
     search: "",
     sort: "",
     order: "",
-    limit: 20,
+    region: "",
+    limit: initialItemExpected,
     skip: 0
   }
 };
@@ -25,8 +28,8 @@ const itemsReducer = (state = initialState, action) => {
       });
     case ActionTypes.GET_ITEMS_SUCCESS:
       return Object.assign({}, state, {
-        items: [...state.items, ...action.payload.content],
-        totalItemCount: action.payload.totalElements,
+        items: [...state.items, ...get(action, "payload.content", [])],
+        responseItemCount: get(action, "payload.content", []).length,
         itemsApiInProgress: false,
         filters: {
           ...state.filters,

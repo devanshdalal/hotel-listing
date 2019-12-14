@@ -3,7 +3,6 @@ import isEmpty from "lodash/isEmpty";
 import orderBy from "lodash/orderBy";
 
 export const APIhandler = options => {
-
   let params = {};
   // get url params
   const routeParams = options.reqUrl.split("?");
@@ -23,16 +22,21 @@ export const APIhandler = options => {
   return new Promise(async (resolve, reject) => {
     console.log("params", params);
     if (api_response.length) {
-      if (
-        !isEmpty(params) &&
-        (!isEmpty(params.name) || !isEmpty(params.sort))
-      ) {
-        let response = api_response.filter(item =>
-          item.name.toLowerCase().includes(params.name.toLowerCase())
-        );
-        if (params.sort.length) {
+      if (!isEmpty(params)) {
+        let response = api_response;
+        if (!isEmpty(params.name)) {
+          response = response.filter(item =>
+            item.name.toLowerCase().includes(params.name.toLowerCase())
+          );
+        }
+        if (!isEmpty(params.region)) {
+          response = response.filter(item =>
+            item.neighbourhood.toLowerCase().includes(params.region.toLowerCase())
+          );
+        }
+        if (params.sort) {
           const [sort, order] = params.sort.split(",");
-          
+
           response = orderBy(response, sort, order);
         }
         return resolve({

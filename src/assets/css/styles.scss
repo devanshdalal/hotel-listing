@@ -128,7 +128,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: rgba($color:$themeBg, $alpha: 0.8);
+  background-color: rgba($color: $themeBg, $alpha: 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,6 +166,14 @@ body {
     background-color: $theme;
     min-height: 50px;
     color: $white;
+    &_form {
+      margin: 0;
+      min-width: 220px;
+      .input {
+        padding: 3px 10px;
+        height: unset;
+      }
+    }
     .title {
       width: 100%;
       margin: 0px 20px;
@@ -220,6 +228,8 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   border-top: 3px solid $theme;
   display: flex;
+  margin: 10px 0px;
+  padding: 10px;
   flex-direction: row;
   &_imageView {
     width: 25%;
@@ -235,35 +245,39 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    .truncate-text {
+      overflow: hidden;
+      white-space: nowrap;
+      max-width: 80%;
+      text-overflow: ellipsis;
+    }
+    .venue {
+      margin-top: 4px;
+    }
+  }
+  &_price {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: center;
-  }
-  .team-name {
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 400px;
-    text-overflow: ellipsis;
-    text-align: center;
-  }
-  .venue {
-    margin-top: 4px;
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 400px;
-    text-overflow: ellipsis;
-    text-align: center;
+    align-items: flex-end;
+    .value {
+      color: $theme;
+    }
   }
 }
 .dropdown-menu {
   .dropdown-item:active {
-    // background-color: $theme;
+    background-color: $theme;
     color: $black;
     background-color: unset;
     outline: none;
   }
   .active {
     color: $black;
-    // background-color: $theme;
+    background-color: $theme;
     background-color: unset;
   }
 }
