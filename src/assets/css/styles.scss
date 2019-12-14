@@ -272,13 +272,13 @@ body {
   .dropdown-item:active {
     background-color: $theme;
     color: $black;
-    background-color: unset;
+    // background-color: unset;
     outline: none;
   }
   .active {
     color: $black;
     background-color: $theme;
-    background-color: unset;
+    // background-color: unset;
   }
 }
 
